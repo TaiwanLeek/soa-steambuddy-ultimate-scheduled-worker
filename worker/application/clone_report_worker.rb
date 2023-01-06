@@ -8,13 +8,15 @@ module SteamBuddy
   class CloneReportWorker
     def initialize
       @config = CloneReportWorker.config
-      # @queue = SteamBuddy::Messaging::Queue.new(
-      #  @config.REPORT_QUEUE_URL, @config
-      # )
+      @queue = SteamBuddy::Messaging::Queue.new(
+        @config.CLONE_QUEUE_URL, @config
+      )
     end
 
     def call
-      puts 'abc'
+      remote_id = '76561198012078200'
+      @queue.send(remote_id.to_json)
+      puts 'Bamboo mouse already updated!'
     end
   end
 end

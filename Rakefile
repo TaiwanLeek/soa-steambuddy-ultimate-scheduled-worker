@@ -20,7 +20,7 @@ namespace :docker do
   desc 'Build Docker image'
   task :build do
     puts "\nBUILDING WORKER IMAGE"
-    sh "sudo docker build --force-rm -t #{USERNAME}/#{IMAGE}:#{VERSION} ."
+    sh "docker build --force-rm -t #{USERNAME}/#{IMAGE}:#{VERSION} ."
   end
 
   desc 'Run the local Docker container as a worker'
@@ -30,18 +30,18 @@ namespace :docker do
     puts "\nRUNNING WORKER WITH LOCAL CONTEXT"
     puts " Running in #{env} mode"
 
-    sh 'sudo docker run -e WORKER_ENV -v $(pwd)/config:/worker/config --rm -it ' \
+    sh 'docker run -e WORKER_ENV -v $(pwd)/config:/worker/config --rm -it ' \
        "#{USERNAME}/#{IMAGE}:#{VERSION}"
   end
 
   desc 'Remove exited containers'
   task :rm do
-    sh 'sudo docker rm -v $(docker ps -a -q -f status=exited)'
+    sh 'docker rm -v $(docker ps -a -q -f status=exited)'
   end
 
   desc 'List all containers, running and exited'
   task :ps do
-    sh 'sudo docker ps -a'
+    sh 'docker ps -a'
   end
 
   # desc 'Push Docker image to Docker Hub'
