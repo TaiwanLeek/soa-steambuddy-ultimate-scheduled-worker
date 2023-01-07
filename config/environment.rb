@@ -4,7 +4,7 @@ require 'figaro'
 
 module SteamBuddy
   # Setup config environment
-  class CloneReportWorker
+  class FetchPlayerWorker
     # Environment variables setup
     Figaro.application = Figaro::Application.new(
       environment: ENV['WORKER_ENV'] || 'development',

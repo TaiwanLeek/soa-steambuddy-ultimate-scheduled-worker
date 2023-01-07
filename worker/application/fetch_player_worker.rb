@@ -5,9 +5,9 @@ require 'aws-sdk-sqs'
 
 module SteamBuddy
   # Scheduled worker to report on recent cloning operations
-  class CloneReportWorker
+  class FetchPlayerWorker
     def initialize
-      @config = CloneReportWorker.config
+      @config = FetchPlayerWorker.config
       @queue = SteamBuddy::Messaging::Queue.new(
         @config.CLONE_QUEUE_URL, @config
       )

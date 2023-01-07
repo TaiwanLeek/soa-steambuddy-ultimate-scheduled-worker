@@ -12,7 +12,7 @@ VERSION = '0.1.0'
 desc 'Build Docker image'
 task :worker do
   require_relative './init'
-  SteamBuddy::CloneReportWorker.new.call
+  SteamBuddy::FetchPlayerWorker.new.call
 end
 
 # Docker tasks
@@ -70,7 +70,7 @@ namespace :queue do
   task :config do
     require_relative 'config/environment' # load config info
     require 'aws-sdk-sqs'
-    @worker = SteamBuddy::CloneReportWorker
+    @worker = SteamBuddy::FetchPlayerWorker
     @config = @worker.config
 
     @sqs = Aws::SQS::Client.new(
