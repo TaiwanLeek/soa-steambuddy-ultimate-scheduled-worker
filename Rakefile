@@ -6,7 +6,7 @@ task :console do
 end
 
 USERNAME = 'taiwanleek'
-IMAGE = 'steambuddy-clone_report_worker'
+IMAGE = 'steambuddy-fetch-player-worker'
 VERSION = '0.1.0'
 
 desc 'Build Docker image'
