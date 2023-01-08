@@ -9,14 +9,15 @@ module SteamBuddy
     def initialize
       @config = FetchPlayerWorker.config
       @queue = SteamBuddy::Messaging::Queue.new(
-        @config.CLONE_QUEUE_URL, @config
+        @config.UPDATE_QUEUE_URL, @config
       )
     end
 
     def call
-      remote_id = '76561198012078200'
-      @queue.send(remote_id.to_json)
-      puts 'Bamboo mouse already updated!'
+      # remote_id = '76561198012078200'
+      message = 'update db'
+      @queue.send(message)
+      puts 'Database already updated!'
     end
   end
 end
